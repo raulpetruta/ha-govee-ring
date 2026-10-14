@@ -6,6 +6,8 @@
 
 <p align="center">
   Control the <b>ring</b> of a Govee H60A4 ceiling light separately from its main panel, fully local.
+  <br>
+  <sub>Tested only on the <b>H60A4</b>. Support for other models needs pull requests.</sub>
 </p>
 
 <p align="center">
@@ -30,7 +32,7 @@ Everything runs on your local network. No Govee account and no cloud.
 
 ## Requirements
 
-- A **Govee H60A4**. It was tested on BLE firmware 1.04.03 and Wi-Fi firmware 1.00.29. Other DreamView-capable ceiling lights may work but are untested. Open an issue if you try one.
+- A **Govee H60A4**. It was tested on BLE firmware 1.04.03 and Wi-Fi firmware 1.00.29. Other models are untested, and support for them needs pull requests: if you have one, try it and open a PR with what you find.
 - **LAN Control** turned on for the light in the Govee Home app: device → ⚙️ settings → LAN Control.
 - A **fixed IP address** for the light. Set a DHCP reservation in your router.
 - Home Assistant **2026.3 or newer**. It was tested on 2026.9 and 2026.10.
