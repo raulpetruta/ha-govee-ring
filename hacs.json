@@ -1,0 +1,7 @@
+{
+  "name": "Govee Ring (H60A4)",
+  "homeassistant": "2026.3.0",
+  "zip_release": true,
+  "filename": "govee_ring.zip",
+  "render_readme": true
+}

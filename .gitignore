@@ -1,0 +1,16 @@
+# never commit Govee app packages or captures
+*.apk
+*.apkm
+*.xapk
+*.MOV
+*.mov
+
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+*.zip
+.DS_Store
