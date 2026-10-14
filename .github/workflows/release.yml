@@ -18,7 +18,7 @@ jobs:
           jq --arg v "$version" '.version = $v' custom_components/govee_ring/manifest.json > m.json
           mv m.json custom_components/govee_ring/manifest.json
       - name: Build zip
-        run: cd custom_components/govee_ring && zip -r "$GITHUB_WORKSPACE/govee_ring.zip" . -x '__pycache__/*'
+        run: cd custom_components/govee_ring && zip -r "$GITHUB_WORKSPACE/govee_ring.zip" . -x '*__pycache__*'
       - uses: softprops/action-gh-release@v2
         with:
           files: govee_ring.zip

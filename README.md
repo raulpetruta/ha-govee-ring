@@ -53,8 +53,10 @@ The steps are the same on **Home Assistant OS**, **Supervised**, **Container (Do
 
 **Home Assistant 2026.11+ with the built-in Marketplace:** HACS becomes part of Home Assistant Core as the Marketplace ([core PR #183502](https://github.com/home-assistant/core/pull/183502), [docs PR #48513](https://github.com/home-assistant/home-assistant.io/pull/48513)).
 
-1. Settings → **Marketplace** → **Add from link**, and paste the repository URL. Once the integration is in the default catalog, search for it instead.
+1. Settings → **Marketplace** → **Add from link**, and paste `raulpetruta/ha-govee-ring`. The Marketplace asks you to connect a GitHub account for this. It then checks for updates every 48 hours.
 2. Restart Home Assistant.
+
+Once Govee Ring is in the default catalog, it will show up in Marketplace search, and installing and updating no longer needs a GitHub account.
 
 [![Open your Home Assistant instance and open this repository in HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=raulpetruta&repository=ha-govee-ring&category=integration)
 
