@@ -171,6 +171,13 @@ I think we're entering a new paradigm: **you record the problem, and the agent r
 - **[REA](https://github.com/morluto/rea)**, a reverse-engineering toolkit with a CLI and MCP server. Claude used it to dig into the Govee Android app package and look for how the app talks to the lamp.
 - The protocol notes from the [SignalRGB](https://signalrgb.com) Govee plugin and the [OpenRGB](https://openrgb.org) community were the hint that the H60A4 supports DreamView streaming.
 
+## Contributors
+
+- [@raulpetruta](https://github.com/raulpetruta): idea, testing, and every video of the ceiling.
+- [Claude](https://claude.com/claude-code) (Anthropic): protocol research, integration code, tests, icon and docs. Listed as a co-author on the commits.
+
+Contributions are welcome. Open an issue or a pull request.
+
 ## Disclaimer
 
 This project is not affiliated with, endorsed by, or connected to Govee. "Govee" and product names are trademarks of their owners. The LAN protocol was worked out by observing the lamp's behaviour, and no Govee code or assets are included. Use at your own risk.
