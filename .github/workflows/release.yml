@@ -1,0 +1,24 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  zip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Stamp version from tag
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          jq --arg v "$version" '.version = $v' custom_components/govee_ring/manifest.json > m.json
+          mv m.json custom_components/govee_ring/manifest.json
+      - name: Build zip
+        run: cd custom_components/govee_ring && zip -r "$GITHUB_WORKSPACE/govee_ring.zip" . -x '__pycache__/*'
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: govee_ring.zip

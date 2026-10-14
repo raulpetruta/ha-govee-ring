@@ -1,0 +1,94 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Add a Govee H60A4",
+        "description": "Turn on LAN Control for the light in the Govee Home app first. Give the light a fixed IP address in your router.",
+        "data": {
+          "host": "IP address or hostname",
+          "name": "Name",
+          "main_entity": "Main light entity (optional)"
+        },
+        "data_description": {
+          "host": "The light's address on your network. The integration sends commands to UDP port 4003. There is no connection test, because the light's replies go to a port the Govee Lights Local integration already uses.",
+          "name": "Device name, for example Living Room.",
+          "main_entity": "The existing light entity for this lamp, usually from the Govee Lights Local integration. It shows up next to the Ring on the same device."
+        }
+      },
+      "reconfigure": {
+        "title": "Change the light's address",
+        "data": {
+          "host": "IP address or hostname"
+        },
+        "data_description": {
+          "host": "The new address of the light."
+        }
+      }
+    },
+    "error": {
+      "invalid_host": "Enter a valid IP address or hostname."
+    },
+    "abort": {
+      "already_configured": "This light is already set up.",
+      "reconfigure_successful": "The address was updated."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Main light",
+        "data": {
+          "main_entity": "Main light entity"
+        },
+        "data_description": {
+          "main_entity": "Leave empty to remove the Main light from this device."
+        }
+      }
+    }
+  },
+  "entity": {
+    "light": {
+      "ring": {
+        "name": "Ring"
+      },
+      "main": {
+        "name": "Main light"
+      }
+    }
+  },
+  "services": {
+    "set_segments": {
+      "name": "Set ring segments",
+      "description": "Colour individual ring zones (0-18). Neighbouring zones blend into each other.",
+      "fields": {
+        "segments": {
+          "name": "Segments",
+          "description": "Zone numbers 0-18. Leave empty for the whole ring."
+        },
+        "rgb_color": {
+          "name": "Colour",
+          "description": "One colour for all listed zones."
+        },
+        "brightness_pct": {
+          "name": "Brightness",
+          "description": "Brightness of the listed zones. 0 turns them off."
+        },
+        "gradient": {
+          "name": "Gradient",
+          "description": "A list of RGB colours spread across the listed zones."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "send_failed": {
+      "message": "Could not send to the light at {host}: {error}"
+    },
+    "invalid_segments": {
+      "message": "Segments {segments} don't exist. Use zones 0 to {max}."
+    },
+    "not_ring": {
+      "message": "Set ring segments only works on a Ring light."
+    }
+  }
+}

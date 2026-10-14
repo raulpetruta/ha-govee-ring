@@ -1,0 +1,38 @@
+name: Bug report
+description: Something doesn't work as described
+labels: [bug]
+body:
+  - type: input
+    id: model
+    attributes:
+      label: Light model and firmware
+      description: From the Govee Home app (device → settings → device info)
+      placeholder: H60A4, BLE 1.04.03 / Wi-Fi 1.00.29
+    validations:
+      required: true
+  - type: input
+    id: ha
+    attributes:
+      label: Home Assistant version and install type
+      placeholder: 2026.10.1, HAOS / Docker / Supervised / Core
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Govee Ring version
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what you expected
+      description: A short video of the light helps a lot.
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics and logs
+      description: Settings → Devices & services → Govee Ring → ⋮ → Download diagnostics. Logs with `custom_components.govee_ring: debug`.
+      render: text

@@ -1,0 +1,25 @@
+set_segments:
+  target:
+    entity:
+      integration: govee_ring
+      domain: light
+  fields:
+    segments:
+      example: "[0, 1, 2, 3]"
+      selector:
+        object:
+    rgb_color:
+      example: "[255, 0, 0]"
+      selector:
+        color_rgb:
+    brightness_pct:
+      example: 60
+      selector:
+        number:
+          min: 0
+          max: 100
+          unit_of_measurement: "%"
+    gradient:
+      example: "[[255, 0, 0], [0, 0, 255]]"
+      selector:
+        object:
