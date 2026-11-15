@@ -1,4 +1,4 @@
-"""Govee Ring: control the ring of a Govee H60A4 ceiling light separately from its panel."""
+"""Govee Ring: control the ring of a Govee H60A4 / H60A6 ceiling light separately from its panel."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ from homeassistant.helpers import config_validation as cv, device_registry as dr
 from homeassistant.helpers.typing import ConfigType
 import voluptuous as vol
 
-from .const import DOMAIN, SERVICE_SET_SEGMENTS
+from .const import CONF_MODEL, DEFAULT_MODEL, DOMAIN, SERVICE_SET_SEGMENTS
 from .streamer import RingStreamer
 
 PLATFORMS = [Platform.LIGHT]
@@ -40,7 +40,7 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
 
 async def async_setup_entry(hass: HomeAssistant, entry: GoveeRingConfigEntry) -> bool:
     host = entry.data[CONF_HOST]
-    streamer = RingStreamer(hass, host)
+    streamer = RingStreamer(hass, host, entry.data.get(CONF_MODEL, DEFAULT_MODEL))
     entry.runtime_data = streamer
 
     # 0.1.x keyed the device by IP; key it by entry so a new IP keeps the same device

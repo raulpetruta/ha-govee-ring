@@ -17,10 +17,13 @@ from homeassistant.core import callback
 from homeassistant.helpers import selector
 import voluptuous as vol
 
-from .const import CONF_MAIN_ENTITY, DOMAIN
+from .const import CONF_MAIN_ENTITY, CONF_MODEL, DEFAULT_MODEL, DOMAIN, MODEL_ZONES
 
 _HOSTNAME = re.compile(r"^(?=.{1,253}$)([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.?)+$")
 _MAIN_SELECTOR = selector.EntitySelector(selector.EntitySelectorConfig(domain="light"))
+_MODEL_SELECTOR = selector.SelectSelector(
+    selector.SelectSelectorConfig(options=list(MODEL_ZONES), mode=selector.SelectSelectorMode.DROPDOWN)
+)
 
 
 def valid_host(host: str) -> bool:
@@ -66,6 +69,7 @@ class GoveeRingConfigFlow(ConfigFlow, domain=DOMAIN):
                     {
                         vol.Required(CONF_HOST): str,
                         vol.Required(CONF_NAME): str,
+                        vol.Required(CONF_MODEL, default=DEFAULT_MODEL): _MODEL_SELECTOR,
                         vol.Optional(CONF_MAIN_ENTITY): _MAIN_SELECTOR,
                     }
                 ),

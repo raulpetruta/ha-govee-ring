@@ -1,6 +1,6 @@
 """Keeps the colour of every ring zone and streams it to the light as DreamView frames.
 
-Zone 19 drives the centre panel's RGB LEDs, so it is always sent black and only the
+The last zone (19 on the H60A4, 11 on the H60A6) drives the centre panel, so it is always sent black and only the
 ring lights up. The light drops out of streaming ~60 s after the last frame, so a
 keepalive re-sends the current frame every 25 s.
 """
@@ -17,7 +17,7 @@ from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers.event import async_track_time_interval
 
 from . import protocol
-from .const import DOMAIN, RING_ZONES, ZONES
+from .const import DEFAULT_MODEL, DOMAIN, MODEL_ZONES
 
 KEEPALIVE = timedelta(seconds=25)
 GRADIENT = 1  # blend between zones; gives the most even ring
@@ -26,13 +26,15 @@ GRADIENT = 1  # blend between zones; gives the most even ring
 class RingStreamer:
     """Streaming state for one light."""
 
-    def __init__(self, hass: HomeAssistant, host: str) -> None:
+    def __init__(self, hass: HomeAssistant, host: str, model: str = DEFAULT_MODEL) -> None:
         self.hass = hass
         self.host = host
-        self.ring = RING_ZONES
-        self.rgb: list[protocol.RGB] = [(255, 255, 255)] * ZONES
-        self.bri = [255] * ZONES
-        self.on = [False] * ZONES
+        self.model = model
+        self.zones = MODEL_ZONES.get(model, MODEL_ZONES[DEFAULT_MODEL])
+        self.ring = self.zones - 1
+        self.rgb: list[protocol.RGB] = [(255, 255, 255)] * self.zones
+        self.bri = [255] * self.zones
+        self.on = [False] * self.zones
         self.streaming = False
         self.mode_dirty = False  # True once the light was forced into black RGB mode
         self._unsub: CALLBACK_TYPE | None = None
@@ -111,7 +113,7 @@ class RingStreamer:
             if self._unsub:
                 self._unsub()
                 self._unsub = None
-            self.on = [False] * ZONES
+            self.on = [False] * self.zones
             if self.streaming:
                 self.streaming = False
                 with contextlib.suppress(HomeAssistantError):

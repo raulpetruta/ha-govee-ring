@@ -38,8 +38,8 @@ async def async_setup_entry(
         identifiers={(DOMAIN, entry.entry_id)},
         name=entry.data[CONF_NAME],
         manufacturer="Govee",
-        model="H60A4",
-        model_id="H60A4",
+        model=streamer.model,
+        model_id=streamer.model,
     )
     entities: list[LightEntity] = [GoveeRing(entry, streamer, info)]
     if target := main_entity(entry):

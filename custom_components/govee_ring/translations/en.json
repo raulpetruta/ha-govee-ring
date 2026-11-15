@@ -2,16 +2,18 @@
   "config": {
     "step": {
       "user": {
-        "title": "Add a Govee H60A4",
+        "title": "Add a Govee ceiling light",
         "description": "Turn on LAN Control for the light in the Govee Home app first. Give the light a fixed IP address in your router.",
         "data": {
           "host": "IP address or hostname",
           "name": "Name",
+          "model": "Model",
           "main_entity": "Main light entity (optional)"
         },
         "data_description": {
           "host": "The light's address on your network. The integration sends commands to UDP port 4003. There is no connection test, because the light's replies go to a port the Govee Lights Local integration already uses.",
           "name": "Device name, for example Living Room.",
+          "model": "H60A4 has a 19-zone ring. H60A6 (Ceiling Light Pro 15\") has an 11-zone side ring.",
           "main_entity": "The existing light entity for this lamp, usually from the Govee Lights Local integration. It shows up next to the Ring on the same device."
         }
       },
@@ -59,11 +61,11 @@
   "services": {
     "set_segments": {
       "name": "Set ring segments",
-      "description": "Colour individual ring zones (0-18). Neighbouring zones blend into each other.",
+      "description": "Colour individual ring zones (H60A4: 0-18, H60A6: 0-10). Neighbouring zones blend into each other.",
       "fields": {
         "segments": {
           "name": "Segments",
-          "description": "Zone numbers 0-18. Leave empty for the whole ring."
+          "description": "Zone numbers (H60A4: 0-18, H60A6: 0-10). Leave empty for the whole ring."
         },
         "rgb_color": {
           "name": "Colour",
